@@ -10,5 +10,5 @@
 # Push to production:
 #   git push production master
 
-git remote add production git@git.wpengine.com:production/bocoup.git
-git remote add staging git@git.wpengine.com:staging/bocoup.git
+git remote add production git@git.wpengine.com:production/deplizard.git
+git remote add staging git@git.wpengine.com:staging/deplizard.git

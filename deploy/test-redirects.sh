@@ -3,12 +3,12 @@
 # Ensure the "Hide development files" redirect rule:
 # ^/((README.md|Vagrantfile|ansible.cfg)$|(wp-database|deploy)(/?$|/))
 # is working at:
-# https://my.wpengine.com/installs/bocoup/redirect_rules
+# https://my.wpengine.com/installs/deplizard/redirect_rules
 
 function base_url() {
   local scheme='https://'
-  local domain='www.bocoup.com'
-  local auth='bocoup:pr3v13w!'
+  local domain='www.example.com'
+  local auth='example:pr3v13w!'
   if [[ "$1" ]]; then
     echo "$scheme$auth@$domain"
   else

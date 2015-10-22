@@ -3,4 +3,4 @@
 # The ansible_ssh_host value should match the host_vars/vagrant site_fqdn and
 # Vagrantfile config.hostsupdater.aliases settings.
 
-vagrant ansible_ssh_host=bocoup-wpengine.loc
+vagrant ansible_ssh_host=deplizard.loc

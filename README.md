@@ -1,9 +1,44 @@
 # A WordPress Deploy Setup Catered to WP Engine Hosting
 ## or "DepLizard"
 
-### Updating files 
+I've been working on a bunch of WordPress projects hosted on WP Engine at Bocoup. This is the culmination of my work, based off of the education and scripts of @tkellen and @cowboy.
 
-The following files have project-specific values, so update them accordingly before you `vagrant up`! By default, everything will fall under the "Bocoup WP Engine" project at http://bocoup-wpengine.loc.
+
+
+### Dependencies
+
+The following will need to be installed on your local development machine before
+you can run any of this. All versions should be the latest available, as some
+required features may not be available in older versions.
+
+* **[Ansible](http://docs.ansible.com/) 1.9.2**
+  - Install `ansible` via apt (Ubuntu), yum (Fedora), [homebrew][homebrew] (OS
+    X), etc. See the [Ansible installation
+    instructions](http://docs.ansible.com/intro_installation.html) for detailed,
+    platform-specific information.
+* **[VirtualBox](https://www.virtualbox.org/)**
+  - [Download](https://www.virtualbox.org/wiki/Downloads) (All platforms)
+  - Install `virtualbox` via [homebrew cask][cask] (OS X)
+* **[Vagrant](https://www.vagrantup.com/)**
+  - [Download](http://docs.vagrantup.com/v2/installation/) (All platforms)
+  - Install `vagrant` via [homebrew cask][cask] (OS X)
+* **[vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)**
+  - Install with `vagrant plugin install vagrant-hostsupdater` (All platforms)
+
+[homebrew]: http://brew.sh/
+[cask]: http://caskroom.io/
+
+
+
+### Deploying the default WordPress installation locally
+
+Clone the repo, go to that directory in your terminal, and run `vagrant up`. You will have a default WP Engine ready installation of WordPress, which you can see at `http://deplizard.loc`.
+
+
+
+### Updating files to personalize the project 
+
+You probably do not want `http://deplizard.loc` as your project host alias or `deplizard` anywhere in your repo probably. Update the following file lines with your respective project names, aliases, and usernames before you run `vagrant up` to personalize your project. Or you can just find `deplizard` with your text editor of choice and update wherever you see it.
 
 #### /
 
@@ -40,9 +75,11 @@ all.yml
 vagrant
 * line 6 - host alias (needs to match host alias in /Vagrantfile)
 
+
+
 ### Updating the database
 
-WordPress saves permalinks in the database. If you update the files with your host alias and domains, you can `vagrant up` but will not be able to log in, since "bocoup-wpengine.loc" is set as the alias. You'll need to use ssh to go into mysql and manually drop and create a WordPress database. You can enter the following commands to do just that:
+WordPress saves permalinks in the database. If you update the files with your host alias and domains, you can run `vagrant up` successfully but you will not be able to access the WordPress site or log in (since "http://deplizard.loc" is set as the URL). You'll need to use ssh to go into mysql and manually drop and create a database called `wordpress`. You can enter the following commands to do just that:
 
 1. `vagrant ssh`
 2. `mysql -u root -p`
@@ -56,28 +93,7 @@ WordPress saves permalinks in the database. If you update the files with your ho
 
 Note that mysql commands have to end with a semi-colon.
 
-### Dependencies
 
-The following will need to be installed on your local development machine before
-you can run any of this. All versions should be the latest available, as some
-required features may not be available in older versions.
-
-* **[Ansible](http://docs.ansible.com/) 1.9.2**
-  - Install `ansible` via apt (Ubuntu), yum (Fedora), [homebrew][homebrew] (OS
-    X), etc. See the [Ansible installation
-    instructions](http://docs.ansible.com/intro_installation.html) for detailed,
-    platform-specific information.
-* **[VirtualBox](https://www.virtualbox.org/)**
-  - [Download](https://www.virtualbox.org/wiki/Downloads) (All platforms)
-  - Install `virtualbox` via [homebrew cask][cask] (OS X)
-* **[Vagrant](https://www.vagrantup.com/)**
-  - [Download](http://docs.vagrantup.com/v2/installation/) (All platforms)
-  - Install `vagrant` via [homebrew cask][cask] (OS X)
-* **[vagrant-hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)**
-  - Install with `vagrant plugin install vagrant-hostsupdater` (All platforms)
-
-[homebrew]: http://brew.sh/
-[cask]: http://caskroom.io/
 
 ### Running specific Ansible playbooks
 
