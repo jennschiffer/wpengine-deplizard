@@ -1,0 +1,35 @@
+# Download and install WP.
+
+- name: ensure temp directory doesn't exist
+  file: dest=/tmp/wordpress state=absent
+
+- name: download wordpress
+  get_url:
+    url: http://wordpress.org/wordpress-{{wp_version}}.tar.gz
+    dest: /tmp/wordpress-{{wp_version}}.tar.gz
+    force: no
+
+- name: verify downloaded file checksum
+  stat:
+    path: /tmp/wordpress-{{wp_version}}.tar.gz
+    get_md5: true
+  register: dl_file
+
+- name: remove downloaded file if checksum is invalid
+  file: dest=/tmp/wordpress-{{wp_version}}.tar.gz state=absent
+  when: dl_file.stat.md5 != "{{wp_version_md5}}"
+
+- fail: msg="the md5 checksum for the downloaded file is invalid"
+  when: dl_file.stat.md5 != "{{wp_version_md5}}"
+
+- name: extract wordpress archive
+  unarchive: src=/tmp/wordpress-{{wp_version}}.tar.gz dest=/tmp copy=no
+
+- name: backup wordpress wp-content subdirectory
+  command: mv /tmp/wordpress/wp-content /tmp/wordpress/wp-content-orig
+
+- name: ensure install directory doesn't exist
+  file: dest={{wp_install_dir}} state=absent
+
+- name: move extracted wordpress directory
+  command: mv /tmp/wordpress {{wp_install_dir}}

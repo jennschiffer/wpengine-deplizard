@@ -1,0 +1,12 @@
+- name: restart nginx
+  service: name=nginx state=restarted
+- name: restart sshd
+  command: service ssh restart
+- name: restart php5-fpm
+  command: service php5-fpm restart
+- name: restart postfix
+  service: name=postfix state=restarted
+  notify: send postfix test email
+- name: send postfix test email
+  shell: echo "Test mail from new/updated postfix at" `hostname` | mail {{postfix_send_test_mail_to}} -s "Test SMTP `hostname`"
+  when: postfix_send_test_mail_to != ""

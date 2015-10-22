@@ -1,0 +1,22 @@
+# Dump WordPress database to a file and download it.
+
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: ensure database dump file doesn't already exist
+      file:
+        path: /tmp/{{wp_db_name}}.sql.bz2
+        state: absent
+
+    - name: dump wordpress database to a file
+      mysql_db:
+        state: dump
+        name: "{{wp_db_name}}"
+        target: /tmp/{{wp_db_name}}.sql.bz2
+
+    - name: download database file
+      fetch:
+        src: /tmp/{{wp_db_name}}.sql.bz2
+        dest: ../../wp-database/
+        fail_on_missing: yes
+        flat: yes

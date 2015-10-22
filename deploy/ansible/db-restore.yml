@@ -1,0 +1,30 @@
+# Restore WordPress database from a file.
+
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: ensure database dump files don't already exist
+      file:
+        path: "{{item}}"
+        state: absent
+      with_items:
+        - /tmp/{{wp_db_name}}.sql
+        - /tmp/{{wp_db_name}}.sql.bz2
+
+    - name: copy database dump file to server
+      copy:
+        src: ../../wp-database/{{wp_db_name}}.sql.bz2
+        dest: /tmp/
+        force: yes
+
+    - name: delete and recreate wordpress mysql database
+      mysql_db: name={{wp_db_name}} state={{item}}
+      with_items:
+        - absent
+        - present
+
+    - name: import database dump into mysql
+      mysql_db:
+        state: import
+        name: "{{wp_db_name}}"
+        target: /tmp/{{wp_db_name}}.sql.bz2

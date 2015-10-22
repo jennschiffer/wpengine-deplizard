@@ -1,0 +1,9 @@
+# Ensure PHP configuration is up-to-date.
+
+- name: ensure php.ini is updated
+  template: src=php.ini dest=/etc/php5/fpm/conf.d
+  notify: restart php5-fpm
+
+- name: ensure the php www conf is updated
+  template: src=www.conf dest=/etc/php5/fpm/pool.d
+  notify: restart php5-fpm

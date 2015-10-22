@@ -1,0 +1,16 @@
+# Configure server. This playbook is run after a server is provisioned but
+# before a project is deployed, to configure the system, add user accounts,
+# and setup long-running processes like nginx, mysql, etc.
+
+- hosts: all
+  sudo: yes
+  roles:
+    - {role: configure, tags: configure}
+    - {role: users, tags: users}
+    - {role: nginx, tags: nginx}
+    - {role: php, tags: php}
+    - {role: mysql, tags: mysql}
+    - {role: wordpress, tags: wordpress}
+    - {role: postfix, tags: postfix}
+  handlers:
+    - include: handlers/handlers.yml

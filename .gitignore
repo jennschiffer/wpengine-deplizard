@@ -1,0 +1,73 @@
+node_modules
+
+# Ignore generated assets
+wp-content/themes/underscores/assets/
+
+# Used by the deployment workflow
+.vagrant
+
+# The following rules are from the WP Engine recommended gitignore (ignores
+# WordPress core files)
+# http://cdn.wpengine.com/wp-content/uploads/2013/10/recommended-gitignore-no-wp.txt
+
+# wordpress specific
+wp-content/uploads/
+wp-content/blogs.dir/
+wp-content/upgrade/*
+wp-content/backup-db/*
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/*
+wp-content/cache/supercache/*
+
+# wpengine specific
+.smushit-status
+.gitattributes
+_wpeprivate
+wp-content/object-cache.php
+wp-content/mu-plugins/mu-plugin.php
+wp-content/mu-plugins/slt-force-strong-passwords.php
+wp-content/mu-plugins/limit-login-attempts
+wp-content/mu-plugins/wpengine-common
+wp-content/mysql.sql
+
+# wp core (as of 3.4.1)
+/wp-content/index.php
+/wp-content/themes/twentyten
+/wp-content/themes/index.php
+/wp-content/plugins/index.php
+
+# large/disallowed file types
+# a CDN should be used for these
+*.hqx
+*.bin
+*.exe
+*.dll
+*.deb
+*.dmg
+*.iso
+*.img
+*.msi
+*.msp
+*.msm
+*.mid
+*.midi
+*.kar
+*.mp3
+*.ogg
+*.m4a
+*.ra
+*.3gpp
+*.3gp
+*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.webm
+*.flv
+*.m4v
+*.mng
+*.asx
+*.asf
+*.wmv
+*.avi
