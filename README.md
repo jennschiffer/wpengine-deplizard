@@ -3,7 +3,7 @@
 
 I've been working on a bunch of WordPress projects hosted on WP Engine at Bocoup. This is the culmination of my work, based off of the education and scripts of @tkellen and @cowboy.
 
-This sets up an installation of WordPress where the database is empty and, therefore, forces you to go through the wizard to continue the setup. It also has the [underscores](https://github.com/automattic/_s) installed because we typically use that as the base theme for our projects.
+This sets up an installation of WordPress where the database is empty and, therefore, forces you to go through the wizard to continue the setup. It also has the [underscores theme](https://github.com/automattic/_s) installed because we typically use that as the base theme for our projects.
 
 The deployment process makes it so you can set up the same WordPress project in minutes, and also has the directory structure to push to a WP Engine git repo with ease. I offered the name "DepLizard" to @brianloveswords and he didn't use it, SO HIS LOSS HUH.
 
@@ -77,25 +77,6 @@ all.yml
 
 vagrant
 * line 6 - host alias (needs to match host alias in /Vagrantfile)
-
-
-
-### Updating the database
-
-WordPress saves permalinks in the database. If you update the files with your host alias and domains, you can run `vagrant up` successfully but you will not be able to access the WordPress site or log in (since "http://deplizard.loc" is set as the URL). You'll need to use ssh to go into mysql and manually drop and create a database called `wordpress`. You can enter the following commands to do just that:
-
-1. `vagrant ssh`
-2. `mysql -u root -p`
-3. when password is requested, type `test123` and you'll be in mysql
-4. `drop database wordpress;`
-5. `create database wordpress;`
-6. go to the host alias in your browser and follow the directions to create your site
-7. go back to the terminal and type `exit` to leave mysql
-8. `exit` to leave vagrant ssh
-9. `./deploy/run-playbook.sh ./deploy/ansible/db-dump.yml vagrant` to dump your new database into the project
-
-Note that mysql commands have to end with a semi-colon.
-
 
 
 ### Running specific Ansible playbooks
