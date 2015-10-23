@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Automatically add an entry to /etc/hosts for this Vagrant box. This
   # requires sudo. This should match the app_fqdn setting specified in the
   # ansible "localdev" config.
-  config.hostsupdater.aliases = ['bocoup-wpengine.loc']
+  config.hostsupdater.aliases = ['deplizard.loc']
 
   # A specific name looks much better than "default" in ansible output.
   config.vm.define 'vagrant'
