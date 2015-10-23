@@ -3,6 +3,9 @@
 
 I've been working on a bunch of WordPress projects hosted on WP Engine at Bocoup. This is the culmination of my work, based off of the education and scripts of @tkellen and @cowboy.
 
+This sets up an installation of WordPress where the database is empty and, therefore, forces you to go through the wizard to continue the setup. It also has the [underscores](https://github.com/automattic/_s) installed because we typically use that as the base theme for our projects.
+
+The deployment process makes it so you can set up the same WordPress project in minutes, and also has the directory structure to push to a WP Engine git repo with ease. I offered the name "DepLizard" to @brianloveswords and he didn't use it, SO HIS LOSS HUH.
 
 
 ### Dependencies
@@ -32,7 +35,7 @@ required features may not be available in older versions.
 
 ### Deploying the default WordPress installation locally
 
-Clone the repo, go to that directory in your terminal, and run `vagrant up`. You will have a default WP Engine ready installation of WordPress, which you can see at `http://deplizard.loc`.
+Clone the repo, go to that directory in your terminal, and run `vagrant up`. You will have a default WP Engine ready installation of WordPress, which you can see at `http://deplizard.loc`. It will take you through the steps to setting up the rest of the installation.
 
 
 
